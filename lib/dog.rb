@@ -44,9 +44,6 @@ class Dog
 	end
 
 	def self.find_or_create_by(args)
-		# row1 = DB[:conn].execute("SELECT * FROM dogs where name = ?", args[:name]).flatten
-		# row2 = DB[:conn].execute("SELECT * FROM dogs where breed = ?", args[:breed]).flatten
-		# if row1[0] == row2[0]
 		row = DB[:conn].execute("SELECT * FROM dogs where name = ? AND breed = ?", args[:name], args[:breed]).flatten
 		if row[0] != nil
 			self.new_from_db(row)
@@ -68,5 +65,4 @@ class Dog
 	def self.drop_table
 		DB[:conn].execute("DROP TABLE IF EXISTS dogs")
 	end
-
 end
