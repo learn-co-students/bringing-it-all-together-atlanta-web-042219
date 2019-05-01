@@ -68,7 +68,7 @@ describe "Dog" do
     end
   end
 
-  describe "#create" do
+  describe ".create" do
     it 'takes in a hash of attributes and uses metaprogramming to create a new dog object. Then it uses the #save method to save that dog to the database'do
       Dog.create(name: "Ralph", breed: "lab")
       expect(DB[:conn].execute("SELECT * FROM dogs")).to eq([[1, "Ralph", "lab"]])
@@ -117,7 +117,7 @@ describe "Dog" do
     end
   end
 
-  describe '#new_from_db' do
+  describe '.new_from_db' do
     it 'creates an instance with corresponding attribute values' do
       row = [1, "Pat", "poodle"]
       pat = Dog.new_from_db(row)
@@ -128,7 +128,7 @@ describe "Dog" do
     end
   end
 
-  describe '#find_by_name' do
+  describe '.find_by_name' do
     it 'returns an instance of student that matches the name from the DB' do
       teddy.save
       teddy_from_db = Dog.find_by_name("Teddy")
